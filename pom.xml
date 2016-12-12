@@ -133,7 +133,7 @@
 				<plugins>
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
-						<artifactId></artifactId>
+						<artifactId>wagon-maven-plugin</artifactId>
 						<version>${wagon-maven-plugin.version}</version>
 						<executions>
 							<execution>
