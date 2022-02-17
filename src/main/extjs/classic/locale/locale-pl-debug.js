@@ -1,3 +1,8 @@
+Ext.define("Ext.locale.pl.data.summary.Count", {
+    override: "Ext.data.summary.Count",
+
+    text: "Liczyć"
+});
 /**
  * Polish Translations
  * By vbert 17-April-2007
@@ -36,22 +41,29 @@ Ext.onReady(function() {
 
         Ext.Date.getShortDayName = function(day) {
             switch (day) {
-            case 0:
-                return 'ndz';
-            case 1:
-                return 'pon';
-            case 2:
-                return 'wt';
-            case 3:
-                return 'śr';
-            case 4:
-                return 'czw';
-            case 5:
-                return 'pt';
-            case 6:
-                return 'sob';
-            default:
-                return '';
+                case 0:
+                    return 'ndz';
+
+                case 1:
+                    return 'pon';
+
+                case 2:
+                    return 'wt';
+
+                case 3:
+                    return 'śr';
+
+                case 4:
+                    return 'czw';
+
+                case 5:
+                    return 'pt';
+
+                case 6:
+                    return 'sob';
+
+                default:
+                    return '';
             }
         };
     }
@@ -105,8 +117,7 @@ Ext.define("Ext.locale.pl.picker.Date", {
     prevText: "Poprzedni miesiąc (Control+StrzałkaWLewo)",
     monthYearText: "Wybierz miesiąc (Control+Up/Down aby zmienić rok)",
     todayTip: "{0} (Spacja)",
-    format: "Y-m-d",
-    startDay: 1
+    format: "Y-m-d"
 });
 
 Ext.define("Ext.locale.pl.picker.Month", {
@@ -282,10 +293,78 @@ Ext.define("Ext.locale.pl.window.MessageBox", {
         cancel: "Anuluj",
         yes: "Tak",
         no: "Nie"
-    }    
+    }
 });
 
 // This is needed until we can refactor all of the locales into individual files
-Ext.define("Ext.locale.pl.Component", {	
+Ext.define("Ext.locale.pl.Component", {
     override: "Ext.Component"
+});
+Ext.define("Ext.locale.pl.grid.feature.AdvancedGrouping", {
+    override: "Ext.grid.feature.AdvancedGrouping",
+
+    expandAllText: "Rozwiń wszystkie",
+    collapseAllText: "Zwinąć wszystkie",
+    groupsText: "Grupy",
+    groupByText: "Grupa według tej dziedziny",
+    addToGroupingText: "Dodaj do grupy",
+    removeFromGroupingText: "Usuń z grupowania",
+    groupSummaryTpl: "Streszczenie ({name})",
+    summaryTpl: "Streszczenie ({store.data.length})"
+});
+Ext.define("Ext.locale.pl.grid.plugin.Summaries", {
+    override: "Ext.grid.plugin.Summaries",
+
+    textNone: "Nic",
+    summaryText: "Streszczenie"
+});
+Ext.define("Ext.locale.pl.grid.plugin.filterbar.Operator", {
+    override: "Ext.grid.plugin.filterbar.Operator",
+
+    operatorsTextMap: {
+        eq: "Jest równy",
+        ne: "Nie równe",
+        gt: "Lepszy niż",
+        ge: "Większy lub równy",
+        lt: "Mniej niż",
+        le: "Mniejszy lub równy",
+        like: "Lubić",
+        nlike: "Nie jak",
+        empty: "Pusty",
+        nempty: "Nie pusty",
+        identical: "Identyczny",
+        nidentical: "Nieidentyczny",
+        regex: "Wyrażenie regularne",
+        "in": "Jest w",
+        notin: "Nie jest"
+    }
+}, function() {
+    var prototype = this.prototype,
+        texts = prototype.operatorsTextMap;
+
+    texts['='] = texts.eq;
+    texts['=='] = texts.eq;
+    texts['!='] = texts.ne;
+    texts['==='] = texts.identical;
+    texts['!=='] = texts.nidentical;
+    texts['>'] = texts.gt;
+    texts['>='] = texts.ge;
+    texts['<'] = texts.lt;
+    texts['<='] = texts.le;
+    texts['/='] = texts.regex;
+});
+Ext.define("Ext.locale.pl.grid.plugin.grouping.Panel", {
+    override: "Ext.grid.plugin.grouping.Panel",
+
+    groupingPanelText: "Przeciągnij tutaj nagłówek kolumny, aby grupować przez tę kolumnę",
+    showGroupingPanelText: "Pokaż grupę przez panel",
+    hideGroupingPanelText: "Ukryj grupę przez panel",
+    clearGroupText: "Wyczyść grupę.",
+    sortAscText: "Sortuj rosnąco",
+    sortDescText: "Sortuj malejące",
+    moveLeftText: "Przesuń w lewo",
+    moveRightText: "Ruch w prawo",
+    moveBeginText: "Przejdź do początku",
+    moveEndText: "Przejdź do końca",
+    removeText: "Usunąć"
 });

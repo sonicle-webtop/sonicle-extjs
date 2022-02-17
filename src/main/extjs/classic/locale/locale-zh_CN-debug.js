@@ -1,3 +1,8 @@
+Ext.define("Ext.locale.zh_CN.data.summary.Count", {
+    override: "Ext.data.summary.Count",
+
+    text: "数数"
+});
 /**
  * Simplified Chinese translation
  * By DavidHu
@@ -19,9 +24,9 @@ Ext.onReady(function() {
 
         parseCodes = {
             g: 1,
-            c: "if (/(上午)/i.test(results[{0}])) {\n"
-                + "if (!h || h == 12) { h = 0; }\n"
-                + "} else { if (!h || h < 12) { h = (h || 0) + 12; }}",
+            c: "if (/(上午)/i.test(results[{0}])) {\n" +
+                "if (!h || h == 12) { h = 0; }\n" +
+                "} else { if (!h || h < 12) { h = (h || 0) + 12; }}",
             s: "(上午|下午)",
             calcAtEnd: true
         };
@@ -70,22 +75,22 @@ Ext.define("Ext.locale.zh_CN.picker.Date", {
     override: "Ext.picker.Date",
     todayText: "今天",
     minText: "日期必须大于最小允许日期",
-    //update
+    // update
     maxText: "日期必须小于最大允许日期",
-    //update
+    // update
     disabledDaysText: "",
     disabledDatesText: "",
     nextText: '下个月 (Ctrl+Right)',
     prevText: '上个月 (Ctrl+Left)',
     monthYearText: '选择一个月 (Control+Up/Down 来改变年份)',
-    //update
+    // update
     todayTip: "{0} (空格键选择)",
     format: "y年m月d日",
     ariaTitle: '{0}',
     ariaTitleDateFormat: 'Y\u5e74m\u6708d\u65e5',
     longDayFormat: 'Y\u5e74m\u6708d\u65e5',
     monthYearFormat: 'Y\u5e74m\u6708',
-    getDayInitial: function (value) {
+    getDayInitial: function(value) {
         // Grab the last character
         return value.substr(value.length - 1);
     }
@@ -100,17 +105,17 @@ Ext.define("Ext.locale.zh_CN.picker.Month", {
 Ext.define("Ext.locale.zh_CN.toolbar.Paging", {
     override: "Ext.PagingToolbar",
     beforePageText: "第",
-    //update
+    // update
     afterPageText: "页,共 {0} 页",
-    //update
+    // update
     firstText: "第一页",
     prevText: "上一页",
-    //update
+    // update
     nextText: "下一页",
     lastText: "最后页",
     refreshText: "刷新",
     displayMsg: "显示 {0} - {1}条，共 {2} 条",
-    //update
+    // update
     emptyMsg: '没有数据'
 });
 
@@ -157,7 +162,7 @@ Ext.define("Ext.locale.zh_CN.form.field.VTypes", {
     alphanumText: '该输入项只能包含半角字母,数字和_'
 });
 
-//add HTMLEditor's tips by andy_ghg
+// add HTMLEditor's tips by andy_ghg
 Ext.define("Ext.locale.zh_CN.form.field.HtmlEditor", {
     override: "Ext.form.field.HtmlEditor",
     createLinkText: '添加超级链接:'
@@ -241,13 +246,13 @@ Ext.define("Ext.locale.zh_CN.form.field.HtmlEditor", {
 Ext.define("Ext.locale.zh_CN.grid.header.Container", {
     override: "Ext.grid.header.Container",
     sortAscText: "正序",
-    //update
+    // update
     sortDescText: "倒序",
-    //update
+    // update
     lockText: "锁定列",
-    //update
+    // update
     unlockText: "解除锁定",
-    //update
+    // update
     columnsText: "列"
 });
 
@@ -265,10 +270,78 @@ Ext.define("Ext.locale.zh_CN.window.MessageBox", {
         cancel: "取消",
         yes: "是",
         no: "否"
-    }    
+    }
 });
 
 // This is needed until we can refactor all of the locales into individual files
-Ext.define("Ext.locale.zh_CN.Component", {	
+Ext.define("Ext.locale.zh_CN.Component", {
     override: "Ext.Component"
+});
+Ext.define("Ext.locale.zh_CN.grid.feature.AdvancedGrouping", {
+    override: "Ext.grid.feature.AdvancedGrouping",
+
+    expandAllText: "展开全部",
+    collapseAllText: "全部收缩",
+    groupsText: "团体",
+    groupByText: "小组由此字段",
+    addToGroupingText: "添加到分组",
+    removeFromGroupingText: "从分组中删除",
+    groupSummaryTpl: "概括 ({name})",
+    summaryTpl: "概括 ({store.data.length})"
+});
+Ext.define("Ext.locale.zh_CN.grid.plugin.Summaries", {
+    override: "Ext.grid.plugin.Summaries",
+
+    textNone: "没有任何",
+    summaryText: "概括"
+});
+Ext.define("Ext.locale.zh_CN.grid.plugin.filterbar.Operator", {
+    override: "Ext.grid.plugin.filterbar.Operator",
+
+    operatorsTextMap: {
+        eq: "是平等的",
+        ne: "不平等",
+        gt: "比...更棒",
+        ge: "大于或等于",
+        lt: "少于",
+        le: "小于或等于",
+        like: "喜欢",
+        nlike: "不喜欢",
+        empty: "空的",
+        nempty: "不是空的",
+        identical: "完全相同的",
+        nidentical: "没有相同",
+        regex: "正则表达式",
+        "in": "是",
+        notin: "不是在"
+    }
+}, function() {
+    var prototype = this.prototype,
+        texts = prototype.operatorsTextMap;
+
+    texts['='] = texts.eq;
+    texts['=='] = texts.eq;
+    texts['!='] = texts.ne;
+    texts['==='] = texts.identical;
+    texts['!=='] = texts.nidentical;
+    texts['>'] = texts.gt;
+    texts['>='] = texts.ge;
+    texts['<'] = texts.lt;
+    texts['<='] = texts.le;
+    texts['/='] = texts.regex;
+});
+Ext.define("Ext.locale.zh_CN.grid.plugin.grouping.Panel", {
+    override: "Ext.grid.plugin.grouping.Panel",
+
+    groupingPanelText: "将列标题拖动到该列的组",
+    showGroupingPanelText: "按面板展示集团",
+    hideGroupingPanelText: "通过面板隐藏小组",
+    clearGroupText: "明确的群体",
+    sortAscText: "升序",
+    sortDescText: "排序下降",
+    moveLeftText: "向左移动",
+    moveRightText: "向右移",
+    moveBeginText: "搬到开始",
+    moveEndText: "搬到结束",
+    removeText: "消除"
 });

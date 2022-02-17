@@ -1,14 +1,21 @@
+Ext.define("Ext.locale.et.data.summary.Count", {
+    override: "Ext.data.summary.Count",
+
+    text: "Arvutama"
+});
 /**
  * Estonian Translations
  * By Rene Saarsoo (2012-05-28)
  */
 Ext.onReady(function() {
+    var shortMonthNames;
 
     if (Ext.Date) {
         Ext.Date.monthNames = ["Jaanuar", "Veebruar", "Märts", "Aprill", "Mai", "Juuni", "Juuli", "August", "September", "Oktoober", "November", "Detsember"];
 
         // Month names aren't shortened to strictly three letters
-        var shortMonthNames = ["Jaan", "Veeb", "Märts", "Apr", "Mai", "Juuni", "Juuli", "Aug", "Sept", "Okt", "Nov", "Dets"];
+        shortMonthNames = ["Jaan", "Veeb", "Märts", "Apr", "Mai", "Juuni", "Juuli", "Aug", "Sept", "Okt", "Nov", "Dets"];
+
         Ext.Date.getShortMonthName = function(month) {
             return shortMonthNames[month];
         };
@@ -148,7 +155,7 @@ Ext.define("Ext.locale.et.form.field.ComboBox", {
 Ext.define("Ext.locale.et.form.field.VTypes", {
     override: "Ext.form.field.VTypes",
     emailText: 'Selle välja sisuks peab olema e-posti aadress kujul "kasutaja@domeen.com"',
-    urlText: 'Selle välja sisuks peab olema veebiaadress kujul "http:/'+'/www.domeen.com"',
+    urlText: 'Selle välja sisuks peab olema veebiaadress kujul "http:/' + '/www.domeen.com"',
     alphaText: 'See väli võib sisaldada vaid tähemärke ja alakriipsu',
     alphanumText: 'See väli võib sisaldada vaid tähemärke, numbreid ja alakriipsu'
 });
@@ -284,10 +291,78 @@ Ext.define("Ext.locale.et.window.MessageBox", {
         cancel: "Katkesta",
         yes: "Jah",
         no: "Ei"
-    }    
+    }
 });
 
 // This is needed until we can refactor all of the locales into individual files
-Ext.define("Ext.locale.et.Component", {	
+Ext.define("Ext.locale.et.Component", {
     override: "Ext.Component"
+});
+Ext.define("Ext.locale.et.grid.feature.AdvancedGrouping", {
+    override: "Ext.grid.feature.AdvancedGrouping",
+
+    expandAllText: "Laienda kõik",
+    collapseAllText: "Kokkuvarisemine kõik",
+    groupsText: "Rühmad",
+    groupByText: "Kontsern selle väljaga",
+    addToGroupingText: "Lisa grupeerimine",
+    removeFromGroupingText: "Eemaldage grupeerimisest",
+    groupSummaryTpl: "Kokkuvõte ({name})",
+    summaryTpl: "Kokkuvõte ({store.data.length})"
+});
+Ext.define("Ext.locale.et.grid.plugin.Summaries", {
+    override: "Ext.grid.plugin.Summaries",
+
+    textNone: "Ükski",
+    summaryText: "Kokkuvõte"
+});
+Ext.define("Ext.locale.et.grid.plugin.filterbar.Operator", {
+    override: "Ext.grid.plugin.filterbar.Operator",
+
+    operatorsTextMap: {
+        eq: "On võrdne",
+        ne: "Pole võrdne",
+        gt: "Suurem kui",
+        ge: "Suurem või võrdne",
+        lt: "Vähem kui",
+        le: "Vähem või võrdne",
+        like: "Niisutama",
+        nlike: "Mitte nagu",
+        empty: "Tühi",
+        nempty: "Ei ole tühi",
+        identical: "Identne",
+        nidentical: "Ei ole identne",
+        regex: "Regulaarne väljend",
+        "in": "On",
+        notin: "Ei ole"
+    }
+}, function() {
+    var prototype = this.prototype,
+        texts = prototype.operatorsTextMap;
+
+    texts['='] = texts.eq;
+    texts['=='] = texts.eq;
+    texts['!='] = texts.ne;
+    texts['==='] = texts.identical;
+    texts['!=='] = texts.nidentical;
+    texts['>'] = texts.gt;
+    texts['>='] = texts.ge;
+    texts['<'] = texts.lt;
+    texts['<='] = texts.le;
+    texts['/='] = texts.regex;
+});
+Ext.define("Ext.locale.et.grid.plugin.grouping.Panel", {
+    override: "Ext.grid.plugin.grouping.Panel",
+
+    groupingPanelText: "Lohistage veeru päises siia sellesse veerus gruppi",
+    showGroupingPanelText: "Kuva grupp paneeli järgi",
+    hideGroupingPanelText: "Peida grupp paneeli teel",
+    clearGroupText: "Selge rühm",
+    sortAscText: "Sorteeri kasvav",
+    sortDescText: "Sorteeri kahanevalt",
+    moveLeftText: "Liigu vasakule",
+    moveRightText: "Liigu paremale",
+    moveBeginText: "Liikuge algusesse",
+    moveEndText: "Lõpuni liikuma",
+    removeText: "Eemaldama"
 });

@@ -1,3 +1,8 @@
+Ext.define("Ext.locale.id.data.summary.Count", {
+    override: "Ext.data.summary.Count",
+
+    text: "Menghitung"
+});
 /**
  * Pedoman translasi:
  * http://id.wikisource.org/wiki/Panduan_Pembakuan_Istilah,_Pelaksanaan_Instruksi_Presiden_Nomor_2_Tahun_2001_Tentang_Penggunaan_Komputer_Dengan_Aplikasi_Komputer_Berbahasa_Indonesia
@@ -8,13 +13,10 @@
  * Indonesian Translations
  */
 Ext.onReady(function() {
-    var cm = Ext.ClassManager,
-        exists = Ext.Function.bind(cm.get, cm);
-
     if (Ext.Updater) {
         Ext.Updater.defaults.indicatorText = '<div class="loading-indicator">Pemuatan...</div>';
     }
-    
+
     if (Ext.Date) {
         Ext.Date.monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
 
@@ -47,6 +49,7 @@ Ext.onReady(function() {
             return Ext.Date.dayNames[day].substring(0, 3);
         };
     }
+
     if (Ext.MessageBox) {
         Ext.MessageBox.buttonText = {
             ok: "OK",
@@ -65,7 +68,7 @@ Ext.onReady(function() {
             dateFormat: 'd/m/Y'
         });
     }
-    
+
 });
 
 Ext.define("Ext.locale.id.view.View", {
@@ -152,7 +155,7 @@ Ext.define("Ext.locale.id.form.field.Date", {
     maxText: "Tanggal dalam field ini harus sebelum {0}",
     invalidText: "{0} tanggal salah - Harus dalam format {1}",
     format: "d/m/y",
-    //altFormats        : "m/d/Y|m-d-y|m-d-Y|m/d|m-d|md|mdy|mdY|d|Y-m-d"
+    // altFormats        : "m/d/Y|m-d-y|m-d-Y|m/d|m-d|md|mdy|mdY|d|Y-m-d"
     altFormats: "d/m/Y|d-m-y|d-m-Y|m/d|m-d|md|mdy|mdY|d|Y-m-d"
 });
 
@@ -283,10 +286,78 @@ Ext.define("Ext.locale.id.window.MessageBox", {
         cancel: "Batal",
         yes: "Ya",
         no: "Tidak"
-    }    
+    }
 });
 
 // This is needed until we can refactor all of the locales into individual files
-Ext.define("Ext.locale.id.Component", {	
+Ext.define("Ext.locale.id.Component", {
     override: "Ext.Component"
+});
+Ext.define("Ext.locale.id.grid.feature.AdvancedGrouping", {
+    override: "Ext.grid.feature.AdvancedGrouping",
+
+    expandAllText: "Melebarkan semua",
+    collapseAllText: "Runtuhnya semua",
+    groupsText: "Kelompok",
+    groupByText: "Grup oleh bidang ini",
+    addToGroupingText: "Tambahkan ke Pengelompokan",
+    removeFromGroupingText: "Hapus dari pengelompokan",
+    groupSummaryTpl: "Ringkasan ({name})",
+    summaryTpl: "Ringkasan ({store.data.length})"
+});
+Ext.define("Ext.locale.id.grid.plugin.Summaries", {
+    override: "Ext.grid.plugin.Summaries",
+
+    textNone: "Tidak ada",
+    summaryText: "Ringkasan"
+});
+Ext.define("Ext.locale.id.grid.plugin.filterbar.Operator", {
+    override: "Ext.grid.plugin.filterbar.Operator",
+
+    operatorsTextMap: {
+        eq: "Sama.",
+        ne: "Tidak sama",
+        gt: "Lebih besar dari",
+        ge: "Lebih dari atau sama dengan",
+        lt: "Kurang dari",
+        le: "Kurang dari atau sama dengan",
+        like: "Suka",
+        nlike: "Tidak suka",
+        empty: "Kosong",
+        nempty: "Tidak kosong",
+        identical: "Identik",
+        nidentical: "Tidak identik",
+        regex: "Ekspresi reguler",
+        "in": "Ada di",
+        notin: "Tidak ada dalam."
+    }
+}, function() {
+    var prototype = this.prototype,
+        texts = prototype.operatorsTextMap;
+
+    texts['='] = texts.eq;
+    texts['=='] = texts.eq;
+    texts['!='] = texts.ne;
+    texts['==='] = texts.identical;
+    texts['!=='] = texts.nidentical;
+    texts['>'] = texts.gt;
+    texts['>='] = texts.ge;
+    texts['<'] = texts.lt;
+    texts['<='] = texts.le;
+    texts['/='] = texts.regex;
+});
+Ext.define("Ext.locale.id.grid.plugin.grouping.Panel", {
+    override: "Ext.grid.plugin.grouping.Panel",
+
+    groupingPanelText: "Seret header kolom di sini ke grup oleh kolom itu",
+    showGroupingPanelText: "Tampilkan grup dengan panel",
+    hideGroupingPanelText: "Sembunyikan Grup dengan Panel",
+    clearGroupText: "Grup yang jelas",
+    sortAscText: "Urutkan naik",
+    sortDescText: "Sortir turun",
+    moveLeftText: "Pindahkan kiri",
+    moveRightText: "Bergerak ke kanan",
+    moveBeginText: "Pindah ke awal",
+    moveEndText: "Pindah ke akhir",
+    removeText: "Menghapus"
 });

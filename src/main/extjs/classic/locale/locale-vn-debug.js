@@ -1,3 +1,8 @@
+Ext.define("Ext.locale.vn.data.summary.Count", {
+    override: "Ext.data.summary.Count",
+
+    text: "Đếm"
+});
 /**
  * List compiled by mystix on the extjs.com forums.
  * Thank you Mystix!
@@ -11,7 +16,7 @@ Ext.onReady(function() {
         Ext.Date.monthNames = ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"];
 
         Ext.Date.dayNames = ["Chủ nhật", "Thứ hai", "Thứ ba", "Thứ tư", "Thứ năm", "Thứ sáu", "Thứ bảy"];
-        
+
         Ext.Date.monthNumbers = {
             "Tháng 1": 0,
             "Tháng 2": 1,
@@ -26,15 +31,15 @@ Ext.onReady(function() {
             "Tháng 11": 10,
             "Tháng 12": 11
         };
-        
-        Ext.Date.getShortMonthName = function(month){
+
+        Ext.Date.getShortMonthName = function(month) {
             return Ext.Date.monthNames[month];
         };
-        
-        Ext.Date.getMonthNumber = function(name){
-            return Ext.Date.monthNumbers[name];    
+
+        Ext.Date.getMonthNumber = function(name) {
+            return Ext.Date.monthNumbers[name];
         };
-        
+
         Ext.Date.getShortDayName = function(day) {
             return Ext.Date.dayNames[day];
         };
@@ -170,10 +175,78 @@ Ext.define("Ext.locale.vn.window.MessageBox", {
         cancel: "Hủy bỏ",
         yes: "Có",
         no: "Không"
-    }    
+    }
 });
 
 // This is needed until we can refactor all of the locales into individual files
-Ext.define("Ext.locale.vn.Component", {	
+Ext.define("Ext.locale.vn.Component", {
     override: "Ext.Component"
+});
+Ext.define("Ext.locale.vn.grid.feature.AdvancedGrouping", {
+    override: "Ext.grid.feature.AdvancedGrouping",
+
+    expandAllText: "Mở rộng tất cả",
+    collapseAllText: "Sụp đổ tất cả",
+    groupsText: "Các nhóm",
+    groupByText: "Nhóm bởi lĩnh vực này",
+    addToGroupingText: "Thêm vào nhóm",
+    removeFromGroupingText: "Xóa khỏi nhóm",
+    groupSummaryTpl: "Tóm lược ({name})",
+    summaryTpl: "Tóm lược ({store.data.length})"
+});
+Ext.define("Ext.locale.vn.grid.plugin.Summaries", {
+    override: "Ext.grid.plugin.Summaries",
+
+    textNone: "Không có",
+    summaryText: "Tóm lược"
+});
+Ext.define("Ext.locale.vn.grid.plugin.filterbar.Operator", {
+    override: "Ext.grid.plugin.filterbar.Operator",
+
+    operatorsTextMap: {
+        eq: "Bằng nhau",
+        ne: "Không công bằng",
+        gt: "Lớn hơn",
+        ge: "Lớn hơn hoặc bằng",
+        lt: "Ít hơn",
+        le: "Ít hơn hoặc bằng",
+        like: "Như",
+        nlike: "Không thích",
+        empty: "Trống",
+        nempty: "Không trống rỗng",
+        identical: "Giống hệt nhau",
+        nidentical: "Không định nghĩa",
+        regex: "Biểu hiện thông thường",
+        "in": "Trong",
+        notin: "Không có trong"
+    }
+}, function() {
+    var prototype = this.prototype,
+        texts = prototype.operatorsTextMap;
+
+    texts['='] = texts.eq;
+    texts['=='] = texts.eq;
+    texts['!='] = texts.ne;
+    texts['==='] = texts.identical;
+    texts['!=='] = texts.nidentical;
+    texts['>'] = texts.gt;
+    texts['>='] = texts.ge;
+    texts['<'] = texts.lt;
+    texts['<='] = texts.le;
+    texts['/='] = texts.regex;
+});
+Ext.define("Ext.locale.vn.grid.plugin.grouping.Panel", {
+    override: "Ext.grid.plugin.grouping.Panel",
+
+    groupingPanelText: "Kéo một tiêu đề cột ở đây để nhóm bằng cột đó",
+    showGroupingPanelText: "Hiển thị nhóm theo bảng điều khiển",
+    hideGroupingPanelText: "Ẩn nhóm theo bảng điều khiển",
+    clearGroupText: "Xóa nhóm",
+    sortAscText: "Sắp xếp tăng dần.",
+    sortDescText: "Sắp xếp giảm dần",
+    moveLeftText: "Di chuyển sang trái",
+    moveRightText: "Đi sang phải",
+    moveBeginText: "Di chuyển đến bắt đầu",
+    moveEndText: "Di chuyển đến cuối.",
+    removeText: "Di dời"
 });
