@@ -61,6 +61,48 @@
 							</target>	
 						</configuration>
 					</execution>
+					<execution>
+						<id>fa5-to-fa6</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target>
+								<echo>Replacing FontAwesome 5 in favor of FontAwesome 6</echo>
+								<replace dir="${project.build.outputDirectory}/client/extjs/packages/font-awesome/resources">
+									<include name="*.css"/>
+									<replacefilter token="Font Awesome 5" value="Font Awesome 6"/>
+									<replacefilter token="url('fonts/" value="url('vendor/6.4.2/webfonts/"/>
+								</replace>
+								<echo>Fixing Regular family name in regular*.css</echo>
+								<!-- Append "Regular" to family-name of 6 version -->
+								<replaceregexp flags="gm">
+									<regexp pattern="(--fa-font-regular:\s*normal 400 1em\/1 .?)Font Awesome 6 Free(.?)"/>
+									<substitution expression="\1Font Awesome 6 Free Regular\2"/>
+									<fileset dir="${project.build.outputDirectory}/client/extjs/packages/font-awesome/resources/vendor/6.4.2/css">
+										<include name="regular*.css"/>
+									</fileset>
+								</replaceregexp>
+								<replaceregexp flags="gm">
+									<regexp pattern="(font-family:\s*.?)Font Awesome 6 Free(.?;\s*.*\s*font-weight:\s*400)"/>
+									<substitution expression="\1Font Awesome 6 Free Regular\2"/>
+									<fileset dir="${project.build.outputDirectory}/client/extjs/packages/font-awesome/resources/vendor/6.4.2/css">
+										<include name="regular*.css"/>
+									</fileset>
+								</replaceregexp>
+								<echo>Fixing Regular family name in v5-font-face*.css</echo>
+								<!-- Append "Regular" to family-name of Regular's font-face declaration (where weight is 400) -->
+								<replaceregexp flags="gm">
+									<regexp pattern="(font-family:\s*.?)Font Awesome 5 Free(.?;\s*font-display:\s*block;\s*font-weight:\s*400)"/>
+									<substitution expression="\1Font Awesome 5 Free Regular\2"/>
+									<fileset dir="${project.build.outputDirectory}/client/extjs/packages/font-awesome/resources/vendor/6.4.2/css">
+										<include name="v5-font-face*.css"/>
+									</fileset>
+								</replaceregexp>
+							</target>
+						</configuration>
+					</execution>
 				</executions>
 			</plugin>
 			<plugin>
